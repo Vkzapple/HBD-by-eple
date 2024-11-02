@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Birthday dilah! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 900px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .entrance-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .entrance-text:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .main-content {
+            display: none;
+            animation: fadeIn 2s ease;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform-origin: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80vh;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            animation: scaleIn 0.3s ease;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); }
+            to { transform: scale(1); }
+        }
+
+        .floating {
+            position: fixed;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="entrance-text" id="entrance">
+        Klik derrr biar uwogh!
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <h1 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 30px;">
+                🎉 Happy Birthday Derrrrrr! 🎂
+            </h1>
+
+            <div class="profile-container" id="profileContainer">
+                <img src="dila.jpg" alt="Birthday Person" class="profile-img">
+            </div>
+
+            <div class="cards-container">
+                <div class="message-card" style="animation-delay: 0.2s">
+                    <h3>Untuk Sahabatku</h3>
+                    <p>Di hari spesialmu ini, semoga semua impianmu menjadi kenyataan! diriku sebagai sahabat mu <b>'epel, adi dan galang'</b> akan terus mendoakan yg terbaik wahai sahabatku muachhhh🌟</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <img src="dila.jpg" alt="Birthday Person Large">
+        </div>
+    </div>
+
+    <div class="music-control" id="musicControl">
+        🎵
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="LAGU SELAMAT ULANG TAHUN - Lagu Anak Anak_LtsPkRPEe54 (mp3cut.net).mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Entrance animation
+        const entrance = document.getElementById('entrance');
+        const mainContent = document.getElementById('mainContent');
+        const profileContainer = document.getElementById('profileContainer');
+        const imageModal = document.getElementById('imageModal');
+        const closeModal = document.getElementById('closeModal');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+        let isMusicPlaying = false;
+
+        entrance.addEventListener('click', () => {
+            entrance.style.display = 'none';
+            mainContent.style.display = 'block';
+            
+            // Start background music
+            try {
+                bgMusic.play();
+                isMusicPlaying = true;
+            } catch (err) {
+                console.log('Autoplay prevented');
+            }
+
+            // Create floating emojis
+            createFloatingEmojis();
+        });
+
+        // Modal functionality
+        profileContainer.addEventListener('click', () => {
+            imageModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            imageModal.style.display = 'none';
+        });
+
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.style.display = 'none';
+            }
+        });
+
+        // Music control
+        musicControl.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicControl.textContent = '🔇';
+            } else {
+                bgMusic.play();
+                musicControl.textContent = '🎵';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+
+        // Floating emojis
+        function createFloatingEmojis() {
+            const emojis = ['🎈', '🎉', '🎊', '🎂', '🎁'];
+            
+            setInterval(() => {
+                const emoji = document.createElement('span');
+                emoji.className = 'floating';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = Math.random() * 100 + 'vh';
+                emoji.style.fontSize = '2em';
+                
+                document.body.appendChild(emoji);
+                
+                setTimeout(() => {
+                    emoji.remove();
+                }, 3000);
+            }, 2000);
+        }
+
+        // Add animation delay to message cards
+        document.querySelectorAll('.message-card').forEach((card, index) => {
+            card.style.animationDelay = `${0.2 * (index + 1)}s`;
+        });
+    </script>
+</body>
+</html>
